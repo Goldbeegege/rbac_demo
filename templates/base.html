@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <style>
+        .header {
+            height: 50px;
+            background-color: darkblue;
+        }
+
+        .menu {
+            width: 200px;
+            position: fixed;
+            top: 50px;
+            bottom: 0;
+            left: 0;
+            background-color: cyan;
+        }
+
+        .content {
+            position: fixed;
+            top: 80px;
+            left: 200px;
+            bottom: 0;
+            right: 0;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="header">{{ request.user.username }}</div>
+<div class="menu">
+    {% for menu_name,menu_list in menu_dict.items %}
+        <div>
+            <p>{{ menu_name }}</p>
+            {% for submenu in menu_list %}
+                <a href="{{ submenu.1 }}">{{ submenu.0 }}</a>
+            {% endfor %}
+
+        </div>
+    {% endfor %}
+
+</div>
+<div class="content">
+    {% block  table %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

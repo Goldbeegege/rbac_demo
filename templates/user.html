@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block table %}
+    {% if per.add %}
+        <a href="" class="btn btn-info">添加</a>
+    {% endif %}
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>用户名</th>
+                <th>权限</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in user_obj %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ user.username }}</td>
+                <td>
+                {% for role in user.role.all %}
+                    {{ role.name }}&nbsp;&nbsp;
+                {% endfor %}
+                </td>
+                <td>
+                    {% if per.change %}
+                    <a href="" class="btn btn-success">编辑</a>
+                    {% endif %}
+                    {% if per.delete %}
+                    <a href="" class="btn btn-danger">删除</a>
+                    {% endif %}
+
+
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+
+{% endblock %}
